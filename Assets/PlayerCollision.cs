@@ -8,6 +8,7 @@ public class EnemyDamage : MonoBehaviour
 
     private bool canDealDamage = true;
 
+    // Take Damage when Zombie(Enemies) touches/collides with Players
     private void OnCollisionStay(Collision coll)
     {
         if (canDealDamage && coll.gameObject.tag == "Player")
@@ -20,6 +21,7 @@ public class EnemyDamage : MonoBehaviour
         }
     }
 
+    // A delay for giving damage, so players don't get instantly evaporated
     private IEnumerator DealDamageWithDelay(Health playerHealth)
     {
         canDealDamage = false;
