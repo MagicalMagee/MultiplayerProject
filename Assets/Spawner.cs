@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnControl());
     }
 
+    // Controls and Adjust the delay in spawn and its frequencies
     IEnumerator SpawnControl()
     {
         float spawnDelay = initialSpawnDelay;
@@ -34,12 +35,12 @@ public class Spawner : MonoBehaviour
 
     void SpawnEnemies()
     {
-        // Calculate random position within the defined range
+        // Random position within the certain range of the "arena"
         float randomX = transform.position.x + Random.Range(-spawnRangeX, spawnRangeX);
         float randomZ = transform.position.z + Random.Range(-spawnRangeZ, spawnRangeZ);
         Vector3 spawnPosition = new Vector3(randomX, transform.position.y, randomZ);
 
-        // Instantiate the spawnee at the calculated position
+        // Instantiate the spawnees randomly at the specified range
         Instantiate(spawnee, spawnPosition, transform.rotation);
     }
 }
