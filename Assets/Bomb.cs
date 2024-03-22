@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    public float explosionDelay = 3f;
-    public float explosionRadius = 5f;
-    public float explosionForce = 1000f;
-    public float upwardsModifier = 0.5f;
+    public float explosionDelay = 3f; // Delay/Bomb Animation (DE)
+    public float explosionRadius = 5f; // Bomb Radius
+    public float explosionForce = 1000f; // Bomb Strength
+    public float upwardsModifier = 0.5f; // Gravity/Velocity of Push
 
     public LayerMask affectedLayers;
 
     public GameObject explosionEffect;
-    public AudioClip explosionSound;
+    public AudioClip explosionSound; // Bomb sound
 
     private bool exploded = false;
 
@@ -19,6 +19,7 @@ public class Bomb : MonoBehaviour
         Invoke("Explode", explosionDelay);
     }
 
+    // Bomb/Explode Function
     private void Explode()
     {
         if (exploded)
@@ -33,6 +34,7 @@ public class Bomb : MonoBehaviour
                 Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
+                    // Push/Explode Objects away
                     rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardsModifier);
                 }
             }
