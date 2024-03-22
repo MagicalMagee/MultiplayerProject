@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
+// Reference: https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld/
 public class NetworkCommandLine : MonoBehaviour
 {
    private NetworkManager netManager;
