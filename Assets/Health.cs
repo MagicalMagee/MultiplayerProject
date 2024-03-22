@@ -3,7 +3,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int health;
-    public int maxHealth = 100;
+    public int maxHealth = 100; // Max Health
     public bool godMode = false; // Flag to indicate whether god mode is enabled
 
     void Start()
@@ -19,16 +19,19 @@ public class Health : MonoBehaviour
             {
                 throw new System.ArgumentOutOfRangeException("Cannot have negative damage");
             }
-
+            
+            // Damage Health
             health -= amount;
 
             if (health <= 0)
             {
+                // Die when at 0 HP
                 Die();
             }
         }
     }
 
+    // Healing factor when steps on "Stars" Object
     public void Heal(int amount)
     {
         if (!godMode) // Check if god mode is not enabled
@@ -40,6 +43,7 @@ public class Health : MonoBehaviour
 
             bool wouldBeOverMaxHealth = health + amount > maxHealth;
 
+            // No Overhealing
             if (wouldBeOverMaxHealth)
             {
                 health = maxHealth;
@@ -53,11 +57,11 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("I am Dead!");
+        // Death
         Destroy(gameObject);
     }
 
-    // Method to toggle god mode on/off
+    // Toggle god mode on/off in Unity
     public void ToggleGodMode(bool enabled)
     {
         godMode = enabled;
@@ -68,11 +72,8 @@ public class Health : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Star"))
         {
-            // Increase player's health
-            Heal(10); // Assuming healing the player by 10 when colliding with a star
-            
-            // Debug message
-            Debug.Log("Player collided with a star! Health increased by 10. Current health: " + health);
+            // Increase player's health, +10 HP for Players
+            Heal(10);
         }
     }
 }
